@@ -7,6 +7,7 @@
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {
       //TODO tell helper app to close
+      //     close sockets
     };
 
     // Status reporting code
