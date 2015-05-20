@@ -43,7 +43,7 @@
       with purely JavaScript, no html <script> tags. Helpful for Scratch JavaScript
       extensions, where there is no html file to put tags in.
      */
-     function includeFile(url) {
+     /*function includeFile(url) {
        var ajax = new XMLHttpRequest();
        ajax.open('GET', url, false); // <-- the 'false' makes it synchronous
        ajax.onreadystatechange = function() {
@@ -61,6 +61,6 @@
          }
        };
        ajax.send(null);
-     }
+     }*/
 
 })({});
