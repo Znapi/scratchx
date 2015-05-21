@@ -27,6 +27,10 @@
   }
 
   includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
+  var socket = io('localhost:25565');
+  socket.on('connect', function(){});
+  socket.on('event', function(data){});
+  socket.on('disconnect', function(){});
 
   // Cleanup function when the extension is unloaded
   ext._shutdown = function() {
