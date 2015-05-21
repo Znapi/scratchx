@@ -28,9 +28,8 @@
 
   includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
   var socket = io('localhost:25565');
-  socket.on('connect', function(){});
-  console.log("Connected");
-  //socket.on('event', function(data){});
+  socket.on('connect', function(){console.log("Connected");});
+  socket.on('event', function(data){console.log("Event recieved");});
   socket.on('disconnect', function(){console.log("Disconnected");});
 
   // Cleanup function when the extension is unloaded
