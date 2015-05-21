@@ -1,5 +1,33 @@
 (function(ext) {
 
+  /**
+  Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450
+  Uses an ajax to load a file on the same domain synchonously and without jQuery,
+  with purely JavaScript, no html <script> tags. Helpful for Scratch JavaScript
+  extensions, where there is no html file to put tags in.
+  */
+  function includeFile(url) {
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET', url, false); // <-- the 'false' makes it synchronous
+    ajax.onreadystatechange = function() {
+    var script = ajax.response || ajax.responseText;
+    if(ajax.readyState === 4) {
+      switch(ajax.status) {
+        case 200:
+        eval.apply(window, [script]);
+        console.log("script loaded: ", url);
+        break;
+
+        default:
+        console.log("ERROR: script not loaded: ", url);
+      }
+    }
+  };
+  ajax.send(null);
+  }
+
+  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
+
   // Cleanup function when the extension is unloaded
   ext._shutdown = function() {
     //TODO tell helper app to close
@@ -29,31 +57,5 @@
 
   // Register the extension
   ScratchExtensions.register('Demo extension', descriptor, ext);
-
-  /**
-  Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450
-  Uses an ajax to load a file on the same domain synchonously and without jQuery,
-  with purely JavaScript, no html <script> tags. Helpful for Scratch JavaScript
-  extensions, where there is no html file to put tags in.
-  */
-  function includeFile(url) {
-    var ajax = new XMLHttpRequest();
-    ajax.open('GET', url, false); // <-- the 'false' makes it synchronous
-    ajax.onreadystatechange = function() {
-    var script = ajax.response || ajax.responseText;
-    if(ajax.readyState === 4) {
-      switch(ajax.status) {
-        case 200:
-        eval.apply(window, [script]);
-        console.log("script loaded: ", url);
-        break;
-
-        default:
-        console.log("ERROR: script not loaded: ", url);
-      }
-    }
-  };
-  ajax.send(null);
-  }
 
 })({});
