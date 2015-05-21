@@ -26,7 +26,7 @@
         blocks: [
             // Block type, block name, function name
             [' ', 'my first block', 'my_first_block'],
-        ]
+        ],
         //menus: {},
         url: 'http://znapi.github.io/scratchx/demo/about.html'
     };
