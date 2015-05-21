@@ -30,8 +30,8 @@
   var socket = io('localhost:25565');
   socket.on('connect', function(){});
   console.log("Connected");
-  socket.on('event', function(data){});
-  socket.on('disconnect', function(){});
+  //socket.on('event', function(data){});
+  socket.on('disconnect', function(){console.log("Disconnected");});
 
   // Cleanup function when the extension is unloaded
   ext._shutdown = function() {
