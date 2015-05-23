@@ -26,6 +26,7 @@
   ajax.send(null);
   }
 
+  var socket;
   var connectedToHelperApp = false;
   /**
   Open a socket on port 25565 and attempt to connect to helper app.
@@ -33,7 +34,7 @@
   app.
   */
   function connectToHelperApp() {
-    var socket = io('localhost:25565');
+    socket = io('localhost:25565');
     socket.on('connect', function() {
       console.log("Connected");
       connectedToHelperApp = true
