@@ -27,20 +27,21 @@
 
 
 
-  /***********************************************************************************\
-  * Code to run on start, after resources are loaded and required declarations made   *
-  \***********************************************************************************/
+  /***********************\
+  * Program begins here   *
+  \***********************/
 
 
   /**
-  Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450
-  Uses an ajax to load a file on the same domain synchonously and without jQuery,
-  with purely JavaScript, no html <script> tags. Helpful for Scratch JavaScript
-  extensions, where there is no html file to put tags in.
+  Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450,
+  But changed to be asynchronomous.
+  It includes a .js file by url, and to prevent warnings, it is done
+  asynchronoumously and calls the callback function, whose only parameter should
+  be a boolean that says if the file could be loaded or not.
   */
   function includeFile(url, callback) {
     var ajax = new XMLHttpRequest();
-    ajax.open('GET', url, true); // <-- the 'false' makes it synchronous
+    ajax.open('GET', url, true); // <-- a 'false' makes it synchronous
     ajax.onreadystatechange = function() {
       var script = ajax.response || ajax.responseText;
       if(ajax.readyState === 4) {
@@ -62,30 +63,39 @@
 
   // Start by retrieveing socket.io, which is necessary to connect to helper app
   includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js", function(gotSocketIO) {
-    if(gotSocketIO) {
-      // Continue to next step of initialization
-    }
-    else {
+    if(!gotSocketIO) {
       ext._getStatus=function(){return{status:0, msg:'Could not retrieve socket.io'}};
       // This extension does no more work from here on because the socket.io was not loaded
     }
+    else {
+      // Continue to next step of initialization
+// <<
+
+var socket = io('localhost:25565');
+/**
+Open a socket on port 25565 and attempt to connect to helper app.
+Currently, this function will not return until it is connected to the helper
+app.
+*/
+function connectToHelperApp() {
+  socket.on('connect', function() {
+    console.log("Connected");
+    connected = true;
   });
-  //pconnectToHelperApp();
-  //var socket = io('localhost:25565');
-  //var connectedToHelperApp = false;
-  /**
-  Open a socket on port 25565 and attempt to connect to helper app.
-  Currently, this function will not return until it is connected to the helper
-  app.
-  */
-  /*function connectToHelperApp() {
-    //socket = io('localhost:25565');
-    socket.on('connect', function() {
-      console.log("Connected");
-      connectedToHelperApp = true
-    });
-    //socket.on('event', function(data){console.log("Event recieved");});
-    //socket.on('disconnect', function(){console.log("Disconnected");});
-  }*/
+  //socket.on('event', function(data){console.log("Event recieved");});
+  socket.on('disconnect', function(){console.log("Disconnected");});
+}
+
+var connected = false;
+ext._getStatus = function() {
+  if(connected){return{status: 2, msg: 'Ready'};}
+  else{return{status: 1, msg: 'Not connected to helper app'};}
+};
+
+connectToHelperApp();
+
+// <<
+    }
+  });
 
 })({});
