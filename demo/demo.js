@@ -26,6 +26,7 @@
   ajax.send(null);
   }
 
+  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
   var socket = io('localhost:25565');
   var connectedToHelperApp = false;
   /**
@@ -87,8 +88,7 @@
   // Register the extension
   ScratchExtensions.register('Demo extension', descriptor, ext);
 
-  /* Code to run on start */
-  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
+  /* Code to run on start, after resources are loaded and required declarations made */
   connectToHelperApp();
 
 })({});
