@@ -57,7 +57,7 @@
       ['w', 'send queued packets', 'flush_packets']
     ],
     menus: {
-      packets: [];
+      packets: ['null', 'menu test']
     },
     url: 'http://znapi.github.io/scratchx/demo/about.html'
   };
