@@ -77,11 +77,13 @@ ext._getStatus = function() {
   else{return{status: 1, msg: 'Not connected to helper app'};}
 };
 
-var socket = io.socket;
-console.log("woo");
-
-socket = io("http://localhost:25565");
-console.log("wee");
+var socket = io("http://localhost:25565");
+socket.on('connect', funciton() {
+  console.log("Connected!");
+});
+socket.on('error', function() {
+  console.log("Connection error!");
+});
 
 // <<
     }
