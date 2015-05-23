@@ -92,7 +92,7 @@ ext._getStatus = function() {
   else{return{status: 1, msg: 'Not connected to helper app'};}
 };
 
-connectToHelperApp();
+//connectToHelperApp();
 
 // <<
     }
