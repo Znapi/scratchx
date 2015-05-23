@@ -46,12 +46,12 @@
   };
 
   ext.queue_packet = function() {
-    
+
   };
 
   ext.flush_packets = function() {
 
-  }
+  };
 
   // Block and block menu descriptions
   var descriptor = {
