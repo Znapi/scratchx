@@ -45,14 +45,14 @@
     //socket.on('disconnect', function(){console.log("Disconnected");});
   }*/
 
-  ext._shutdown;// = function() {
+  ext._shutdown = function() {
     //socket.on('disconnect', function(){console.log("Disconnected");});
     //socket.close; socket.Cleanup;
-  //};
+  };
 
   ext._getStatus = {status: 1, msg: 'Initializing'};
-  ext.queue_packet;
-  ext.flush_packets;
+  ext.queue_packet=function(){};
+  ext.flush_packets=function(){};
 
   // Block and block menu descriptions
   var descriptor = {
