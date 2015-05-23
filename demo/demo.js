@@ -53,9 +53,12 @@
   var descriptor = {
     blocks: [
       // Block type, block name, function name
-      [' ', 'my first block', 'my_first_block'],
+      [' ', 'queue packet %m.packets', 'queue_packet'],
+      ['w', 'send queued packets', 'flush_packets']
     ],
-    //menus: {},
+    menus: {
+      packets: [];
+    },
     url: 'http://znapi.github.io/scratchx/demo/about.html'
   };
 
