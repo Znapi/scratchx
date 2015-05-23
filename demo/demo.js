@@ -81,6 +81,7 @@ var socket = io.socket;
 console.log("woo");
 
 socket = io("http://localhost:25565");
+console.log("wee");
 
 // <<
     }
