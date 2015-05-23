@@ -8,7 +8,7 @@
   */
   function includeFile(url, callback) {
     var ajax = new XMLHttpRequest();
-    ajax.open('GET', url, false); // <-- the 'false' makes it synchronous
+    ajax.open('GET', url, true); // <-- the 'false' makes it synchronous
     ajax.onreadystatechange = function() {
       var script = ajax.response || ajax.responseText;
       if(ajax.readyState === 4) {
@@ -50,7 +50,7 @@
     //socket.close; socket.Cleanup;
   };
 
-  ext._getStatus = {status: 1, msg: 'Initializing'};
+  ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
   ext.queue_packet=function(){};
   ext.flush_packets=function(){};
 
