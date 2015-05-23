@@ -14,7 +14,7 @@
   var descriptor = {
     blocks: [
       // Block type, block name, function name
-      [' ', 'queue packet %m.packets', 'queue_packet'],
+      [' ', 'queue packet %m.sounds', 'queue_packet'],
       ['w', 'send queued packets', 'flush_packets']
     ],
     menus: {
