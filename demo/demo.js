@@ -78,6 +78,9 @@ ext._getStatus = function() {
 };
 
 var socket = io.socket;
+console.log("woo");
+
+socket = io("http://localhost:25565");
 
 // <<
     }
