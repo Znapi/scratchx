@@ -14,7 +14,7 @@
   var descriptor = {
     blocks: [
       // Block type, block name, function name
-      [' ', 'queue packet %m.sound', 'queue_packet'],
+      [' ', 'queue packet %m.packets', 'queue_packet'],
       ['w', 'send queued packets', 'flush_packets']
     ],
     menus: {
@@ -71,28 +71,13 @@
       // Continue to next step of initialization
 // <<
 
-//var socket = io('localhost:25565');
-/**
-Open a socket on port 25565 and attempt to connect to helper app.
-Currently, this function will not return until it is connected to the helper
-app.
-*/
-/*function connectToHelperApp() {
-  socket.on('connect', function() {
-    console.log("Connected");
-    connected = true;
-  });
-  //socket.on('event', function(data){console.log("Event recieved");});
-  socket.on('disconnect', function(){console.log("Disconnected");});
-}*/
-
 var connected = false;
 ext._getStatus = function() {
   if(connected){return{status: 2, msg: 'Ready'};}
   else{return{status: 1, msg: 'Not connected to helper app'};}
 };
 
-//connectToHelperApp();
+
 
 // <<
     }
