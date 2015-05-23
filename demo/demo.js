@@ -77,14 +77,14 @@ Open a socket on port 25565 and attempt to connect to helper app.
 Currently, this function will not return until it is connected to the helper
 app.
 */
-function connectToHelperApp() {
+/*function connectToHelperApp() {
   socket.on('connect', function() {
     console.log("Connected");
     connected = true;
   });
   //socket.on('event', function(data){console.log("Event recieved");});
   socket.on('disconnect', function(){console.log("Disconnected");});
-}
+}*/
 
 var connected = false;
 ext._getStatus = function() {
