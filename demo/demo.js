@@ -1,5 +1,37 @@
 (function(ext) {
 
+  /********************************************************\
+  * Scratch Extension boilerplate code                     *
+  * Filled in later when all resources are properly loaded *
+  \********************************************************/
+
+  ext._shutdown=function(){};
+  ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
+  ext.queue_packet=function(){};
+  ext.flush_packets=function(){};
+
+  // Block and block menu descriptions
+  var descriptor = {
+    blocks: [
+      // Block type, block name, function name
+      [' ', 'queue packet %m.packets', 'queue_packet'],
+      ['w', 'send queued packets', 'flush_packets']
+    ],
+    menus: {
+      packets: ['null', 'menu test']
+    },
+    url: 'http://znapi.github.io/scratchx/demo/about.html'
+  };
+
+  // Register the extension
+  ScratchExtensions.register('Demo extension', descriptor, ext);
+
+
+  /***********************************************************************************\
+  |* Code to run on start, after resources are loaded and required declarations made *|
+  \***********************************************************************************/
+
+
   /**
   Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450
   Uses an ajax to load a file on the same domain synchonously and without jQuery,
@@ -28,6 +60,17 @@
     ajax.send(null);
   }
 
+  // Start by retrieveing socket.io, which is necessary to connect to helper app
+  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.j", function(gotSocketIO) {
+    if(gotSocketIO) {
+      // Leave status as unready, and continue to next step of initialization
+    }
+    else {
+      ext._getStatus=function(){return{status:0, msg:'Could not retrieve socket.io'}};
+      // This extension does no more work from hereon.
+    }
+  });
+  //pconnectToHelperApp();
   //var socket = io('localhost:25565');
   //var connectedToHelperApp = false;
   /**
@@ -44,44 +87,5 @@
     //socket.on('event', function(data){console.log("Event recieved");});
     //socket.on('disconnect', function(){console.log("Disconnected");});
   }*/
-
-  ext._shutdown = function() {
-    //socket.on('disconnect', function(){console.log("Disconnected");});
-    //socket.close; socket.Cleanup;
-  };
-
-  ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-  ext.queue_packet=function(){};
-  ext.flush_packets=function(){};
-
-  // Block and block menu descriptions
-  var descriptor = {
-    blocks: [
-      // Block type, block name, function name
-      [' ', 'queue packet %m.packets', 'queue_packet'],
-      ['w', 'send queued packets', 'flush_packets']
-    ],
-    menus: {
-      packets: ['null', 'menu test']
-    },
-    url: 'http://znapi.github.io/scratchx/demo/about.html'
-  };
-
-  // Register the extension
-  ScratchExtensions.register('Demo extension', descriptor, ext);
-
-  /* Code to run on start, after resources are loaded and required declarations made */
-
-  // Start by retrieveing socket.io, which is necessary to connect to helper app
-  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.j", function(gotSocketIO) {
-    if(gotSocketIO) {
-      // Leave status as unready, and continue to next step of initialization
-    }
-    else {
-      ext._getStatus = {status:0, msg:'Could not retrieve socket.io'};
-      // This extension does no more work from hereon.
-    }
-  });
-  //pconnectToHelperApp();
 
 })({});
