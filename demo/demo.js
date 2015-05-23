@@ -29,19 +29,23 @@
   includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
   var socket = io('localhost:25565');
   socket.on('connect', function(){console.log("Connected");});
+  console.log("lol");
   //socket.on('event', function(data){console.log("Event recieved");});
-  socket.on('disconnect', function(){console.log("Disconnected");});
+  //socket.on('disconnect', function(){console.log("Disconnected");});
 
   // Cleanup function when the extension is unloaded
   ext._shutdown = function() {
     //TODO tell helper app to close
     //     close sockets
+    socket.on('disconnect', function(){console.log("Disconnected");});
+    socket.close; socket.Cleanup;
   };
 
   // Status reporting code
   // Use this to report missing hardware, plugin or unsupported browser
   ext._getStatus = function() {
     //TODO ping helper app
+
     return {status: 2, msg: 'Ready'};
   };
 
