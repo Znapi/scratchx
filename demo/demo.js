@@ -45,9 +45,13 @@
     return {status: 2, msg: 'Ready'};
   };
 
-  ext.my_first_block = function() {
-    // Code that gets executed when the block is run
+  ext.queue_packet = function() {
+    
   };
+
+  ext.flush_packets = function() {
+
+  }
 
   // Block and block menu descriptions
   var descriptor = {
