@@ -71,7 +71,7 @@
       // Continue to next step of initialization
 // <<
 
-var socket = io('localhost:25565');
+//var socket = io('localhost:25565');
 /**
 Open a socket on port 25565 and attempt to connect to helper app.
 Currently, this function will not return until it is connected to the helper
