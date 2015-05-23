@@ -8,7 +8,7 @@
 
   ext._shutdown=function(){};
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-  ext.queue_packet=function(){};
+  ext.queue_packet=function(callback){callback();};
   ext.flush_packets=function(){};
 
   var descriptor = {
