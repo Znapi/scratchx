@@ -78,7 +78,7 @@ ext._getStatus = function() {
 };
 
 var socket = io("http://localhost:25565");
-socket.on('connect', funciton() {
+socket.on('connect', function() {
   console.log("Connected!");
 });
 socket.on('error', function() {
