@@ -26,12 +26,21 @@
   ajax.send(null);
   }
 
-  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
-  var socket = io('localhost:25565');
-  socket.on('connect', function(){console.log("Connected");});
-  console.log("lol");
-  //socket.on('event', function(data){console.log("Event recieved");});
-  //socket.on('disconnect', function(){console.log("Disconnected");});
+  var connectedToHelperApp = false;
+  /**
+  Open a socket on port 25565 and attempt to connect to helper app.
+  Currently, this function will not return until it is connected to the helper
+  app.
+  */
+  function connectToHelperApp() {
+    var socket = io('localhost:25565');
+    socket.on('connect', function() {
+      console.log("Connected");
+      connectedToHelperApp = true
+    });
+    //socket.on('event', function(data){console.log("Event recieved");});
+    //socket.on('disconnect', function(){console.log("Disconnected");});
+  }
 
   // Cleanup function when the extension is unloaded
   ext._shutdown = function() {
@@ -45,8 +54,12 @@
   // Use this to report missing hardware, plugin or unsupported browser
   ext._getStatus = function() {
     //TODO ping helper app
-
-    return {status: 2, msg: 'Ready'};
+    if(connectedToHelperApp) {
+      return {status: 2, msg: 'Ready'};
+    }
+    else {
+      return {status: 0, msg: 'Not connected to helper app'}
+    }
   };
 
   ext.queue_packet = function() {
@@ -72,5 +85,9 @@
 
   // Register the extension
   ScratchExtensions.register('Demo extension', descriptor, ext);
+
+  /* Code to run on start */
+  includeFile("http://znapi.github.io/scratchx/demo/socket.io.min.js");
+  connectToHelperApp();
 
 })({});
