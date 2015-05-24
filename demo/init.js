@@ -1,8 +1,13 @@
 var connected = false;
 
-function finishInitialization(ext) {
+function initialize(ext) {
 
   /* Set block function definitions */
+
+  // Send a packet over the network immediately
+  ext.send_packet = function(packet) {
+
+  }
 
   // Add packet to the outbound queue
   ext.queue_packet = function(packet, callback) {
@@ -19,6 +24,13 @@ function finishInitialization(ext) {
     callback();
   }
 
+  var read_inbound_on_recieve = true;
+  // Set whether or not inbound packets should be processed when they are
+  // recieved. A true means that read_inbound never has to be called by Scratch.
+  ext.set_recieve_action = function(processOnRecieve) {
+    read_inbound_on_recieve = processOnRecieve;
+    if(read_inbound_on_recieve) read_inbound(); // Read all unread packets
+  }
 
   /* Set up connection to helper app */
 
