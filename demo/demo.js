@@ -1,9 +1,17 @@
 (function(ext) {
 
-  /************************************************************************\
-  * Scratch Extension boilerplate code                                     *
-  * Filled in progammatically later when all resources are properly loaded *
-  \************************************************************************/
+  /************************************\
+  * Scratch Extension boilerplate code *
+  \************************************/
+
+  /*
+  This is the boilerplate code required for an extension that is minimally
+  pre-filled in. It  is filled in progammatically after the extension loads by
+  code that runs on load.
+  Only neccessary parts are filled in for end user experience. The status is
+  explicitly set to 'unready' because the extension still has to initialize
+  after it is loaded.
+  */
 
 
   ext._shutdown=function(){};
@@ -27,17 +35,17 @@
 
 
 
-  /***********************\
-  * Program begins here   *
-  \***********************/
+  /******************************\
+  * Program begins here on load  *
+  \******************************/
 
 
   /**
-  Epic code found in this SO answer: http://stackoverflow.com/a/20518446/3390450,
-  But changed to be asynchronomous.
+  Credit to here: http://stackoverflow.com/a/20518446/3390450,
+  Small change to be asynchronomous.
   It includes a .js file by url, and to prevent warnings, it is done
-  asynchronoumously and calls the callback function, whose only parameter should
-  be a boolean that says if the file could be loaded or not.
+  asynchronoumously and calls a callback function when it's done, and whose only
+  parameter should be a boolean that says if the file could be loaded or not.
   */
   function includeFile(url, callback) {
     var ajax = new XMLHttpRequest();
