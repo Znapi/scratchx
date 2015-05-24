@@ -1,6 +1,6 @@
 function setBlockFunctions(ext) {
   // Add packet to the outbound queue
-  ext.queue_packet = function(callback) {
+  ext.queue_packet = function(packet, callback) {
     callback();
   }
 

@@ -13,13 +13,11 @@
   after it is loaded.
   */
 
-  var empty=function(){};
-  var emptySynchronomous=function(callback){callback();};
   ext._shutdown=empty;
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-  ext.queue_packet=emptySynchronomous;
-  ext.flush_packets=empty;
-  ext.read_inbound=emptySynchronomous;
+  ext.queue_packet=function(packet,callback){callback()};
+  ext.flush_packets=funciton(){};
+  ext.read_inbound=function(callback){callback};
 
   var descriptor = {
     blocks: [
