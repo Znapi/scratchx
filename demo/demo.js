@@ -85,12 +85,23 @@ ext._getStatus = function() {
   else{return{status: 1, msg: 'Not connected to helper app'};}
 };
 
+// Connect to helper app
 var socket = io("http://localhost:25565");
+ext._shutdown = function() {
+  //TODO tell helper app to shut off server
+}
+
 socket.on('connect', function() {
+  connected = true;
   console.log("Connected!");
 });
 socket.on('error', function() {
+  connected = false;
   console.log("Connection error!");
+});
+socket.on('disconnect', function() {
+  connected = false;
+  console.log("Disconnected!");
 });
 
 // <<
