@@ -1,9 +1,16 @@
 function setBlockFunctions(ext) {
-  ext.queue_packet = function() {
+  // Add packet to the outbound queue
+  ext.queue_packet = function(callback) {
+    callback();
+  }
+
+  // Send all packets in the outbound queue
+  ext.flush_outbound = function() {
 
   }
 
-  ext.flush_packets = function(callback) {
+  // Process all packets in the inbound queue
+  ext.read_inbound = function(callback) {
     callback();
   }
 }

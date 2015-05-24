@@ -19,12 +19,14 @@
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
   ext.queue_packet=emptySynchronomous;
   ext.flush_packets=empty;
+  ext.read_inbound=emptySynchonomous;
 
   var descriptor = {
     blocks: [
       // Block type, block name, function name
-      [' ', 'queue packet %m.packets', 'queue_packet'],
-      ['w', 'send queued packets', 'flush_packets']
+      ['w', 'Queue packet %m.packets', 'queue_packet'],
+      [' ', 'Send queued packets', 'flush_packets'],
+      ['w', 'Process inbound queue', 'read_inbound'],
     ],
     menus: {
       packets: ['null', 'menu test']
