@@ -71,12 +71,11 @@ function includeFile(url, callback) {
 }
 var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
-// Declarations and definitions
 var connected = false;
 
 // Initialization: Step 1
 // Get socket.io
-/*includeFile(resourcesURL + "socket.io.min.js", // Callback
+includeFile(resourcesURL + "socket.io.min.js", // Callback
 
 // Initialization: Step 2
 function(gotSocketIO) {
@@ -122,6 +121,6 @@ function(gotBlocks) {
       //TODO tell helper app to shut off server
     };
 
-}});}});*/
+}});}});
 // <<
 })({});
