@@ -55,5 +55,6 @@ function initialize(ext) {
 
   ext._shutdown = function() {
     //TODO tell helper app to shut off server
+    //     save packet defs and variables
   };
 }

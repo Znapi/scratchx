@@ -21,12 +21,11 @@ ext.read_inbound=function(callback){callback();};
 
 var descriptor = {
   blocks: [
-    ['--'],
     // Block type, block name, function name
     ['w', 'queue packet %m.packets', 'queue_packet'],
     [' ', 'send queued packets', 'flush_outbound'],
     [' ', 'send packet %m.packets', 'send_packet'],
-    ['--'],
+    ['-'],
     ['w', 'process inbound packets', 'read_inbound'],
     [' ', 'set auto process inbound to %m.boolean', 'set_recieve_action'],
   ],
@@ -51,9 +50,9 @@ resources, and, if successful, retrieve and run the initialization file.
 
 /**
 Credit to here: http://stackoverflow.com/a/20518446/3390450,
-Small change to be asynchronomous.
+Small change to be asynchronous.
 It includes a .js file by url, and to prevent warnings, it is done
-asynchronoumously and calls a callback function when it's done, and whose only
+asynchronously and calls a callback function when it's done, and whose only
 parameter should be a boolean that says if the file could be loaded or not.
 */
 function includeFile(url, callback) {
