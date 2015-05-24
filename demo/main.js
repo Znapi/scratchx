@@ -25,7 +25,7 @@ var descriptor = {
     // Block type, block name, function name
     ['w', 'queue packet %m.packets', 'queue_packet'],
     [' ', 'send queued packets', 'flush_outbound'],
-    [' '. 'send packet %m.packets', 'send_packet'],
+    [' ', 'send packet %m.packets', 'send_packet'],
     ['--'],
     ['w', 'process inbound packets', 'read_inbound'],
     [' ', 'set auto process inbound to %m.boolean', 'set_recieve_action'],
