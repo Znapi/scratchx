@@ -22,10 +22,10 @@
   var descriptor = {
     blocks: [
       // Block type, block name, function name
-      ['w', 'Queue packet %m.packets', 'queue_packet'],
-      [' ', 'Send queued packets', 'flush_outbound'],
-      ['w', 'Process inbound queue', 'read_inbound'],
-    ],
+      ['w', 'queue packet %m.packets', 'queue_packet'],
+      [' ', 'send queued packets', 'flush_outbound'],
+      ['w', 'process inbound packets', 'read_inbound'],
+    ], [[' ', 'helllo', 'nothing']],
     menus: {
       packets: ['null', 'menu test']
     },
