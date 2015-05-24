@@ -15,9 +15,9 @@
 
   ext._shutdown=empty;
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-  ext.queue_packet=function(packet,callback){callback()};
+  ext.queue_packet=function(packet,callback){callback();};
   ext.flush_packets=funciton(){};
-  ext.read_inbound=function(callback){callback};
+  ext.read_inbound=function(callback){callback();};
 
   var descriptor = {
     blocks: [
