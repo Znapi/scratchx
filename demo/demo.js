@@ -13,10 +13,10 @@
   after it is loaded.
   */
 
-  ext._shutdown=empty;
+  ext._shutdown=function(){};
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
   ext.queue_packet=function(packet,callback){callback();};
-  ext.flush_packets=funciton(){};
+  ext.flush_packets=function(){};
   ext.read_inbound=function(callback){callback();};
 
   var descriptor = {
