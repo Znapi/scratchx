@@ -71,11 +71,12 @@ function includeFile(url, callback) {
 var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
 // Initialization: Step 1
-// Start by retrieveing socket.io, which is necessary to connect to helper app
-includeFile(resourcesURL + "socket.io.min.js", getBlocks);
+function getSocketIO() {
+  includeFile(resourcesURL + "socket.io.min.js", getBlocks);
+}
 
 // Initialization: Step 2
-!function getBlocks(gotSocketIO) {
+function getBlocks(gotSocketIO) {
   if(!gotSocketIO) {
     ext._getStatus=function(){return{status:0, msg:'Could not retrieve socket.io'}};
     // This extension does no more work from here on because the socket.io was not loaded
@@ -114,5 +115,6 @@ socket.on('disconnect', function() {
 // <<
   }
 }
+getSocketIO();
 // <<
 })({});
