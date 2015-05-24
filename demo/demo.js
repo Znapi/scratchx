@@ -72,7 +72,7 @@ function includeFile(url, callback) {
 var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
 var connected = false;
-var finishInitialization;
+var finishInit;
 // Initialization: Step 1
 // Get socket.io
 includeFile(resourcesURL + "socket.io.min.js", // Callback
@@ -95,7 +95,8 @@ function(gotRest) {
   }
   else {
     // Finish initialization with the file just loaded
-    finishInitialization(ext);
+    finishInit = finishInitialization;
+    finishInit(ext);
     console.log(JSON.toString(ext._getStatus()));
   }
 });
