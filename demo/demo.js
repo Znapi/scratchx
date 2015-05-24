@@ -72,7 +72,7 @@ function includeFile(url, callback) {
 var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
 var connected = false;
-
+var finishInitialization;
 // Initialization: Step 1
 // Get socket.io
 includeFile(resourcesURL + "socket.io.min.js", // Callback
