@@ -1,8 +1,8 @@
 (function(ext) {
 
-  /************************************\
-  * Scratch Extension boilerplate code *
-  \************************************/
+/************************************\
+* Scratch Extension boilerplate code *
+\************************************/
 
   /*
   This is the boilerplate code required for an extension that is minimally
@@ -13,11 +13,12 @@
   after it is loaded.
   */
 
-
-  ext._shutdown=function(){};
+  var empty=function(){};
+  var emptySynchronomous=function(callback){callback();};
+  ext._shutdown=empty;
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-  ext.queue_packet=function(callback){callback();};
-  ext.flush_packets=function(){};
+  ext.queue_packet=emptySynchronomous;
+  ext.flush_packets=empty;
 
   var descriptor = {
     blocks: [
@@ -32,12 +33,12 @@
   };
 
   ScratchExtensions.register('Demo extension', descriptor, ext);
-
 // <<
 
-  /******************************\
-  * Program begins here on load  *
-  \******************************/
+
+/*********************\
+* Program begins here *
+\*********************/
 
 
 /**
@@ -70,51 +71,57 @@ function includeFile(url, callback) {
 }
 var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
+// Declarations and definitions
+var connected = false;
+
 // Initialization: Step 1
-function getSocketIO() {
-  includeFile(resourcesURL + "socket.io.min.js", getBlocks);
-}
+// Get socket.io
+includeFile(resourcesURL + "socket.io.min.js", // Callback
 
 // Initialization: Step 2
-function getBlocks(gotSocketIO) {
+function(gotSocketIO) {
   if(!gotSocketIO) {
     ext._getStatus=function(){return{status:0, msg:'Could not retrieve socket.io'}};
-    // This extension does no more work from here on because the socket.io was not loaded
+    // This extension does no more work from here on because the socket.io coudl not be retrieved
   }
   else {
-    // Continue to next step of initialization: set block functions
-    //includeFile(resourcesURL + "blocks.js", )
-    // Continue to last step of initialization: set up connection to helper app
-// <<
+    // Get block function definitions
+    includeFile(resourcesURL + "blocks.js", // Callback
 
-var connected = false;
-ext._getStatus = function() {
-  if(connected){return{status: 2, msg: 'Ready'};}
-  else{return{status: 1, msg: 'Not connected to helper app'};}
-};
-
-// Connect to helper app
-var socket = io("http://localhost:25565");
-ext._shutdown = function() {
-  //TODO tell helper app to shut off server
-}
-
-socket.on('connect', function() {
-  connected = true;
-  console.log("Connected!");
-});
-socket.on('error', function() {
-  connected = false;
-  console.log("Connection error!");
-});
-socket.on('disconnect', function() {
-  connected = false;
-  console.log("Disconnected!");
-});
-
-// <<
+// Initialization: Step 3
+function(gotBlocks) {
+  if(!gotBlocks) {
+    ext._getStatus=function(){return{status:0, msg:'Could not retrieve block function definitions'}};
+    // The extension does no more work from here on because the block definitions could not be retrieved
   }
-}
-getSocketIO();
+  else {
+    // Set the block funciton definitions with the newly loaded file
+    setBlockFunctions(ext);
+
+    // Set up connection to helper app
+    var socket = io("http://localhost:25565");
+    socket.on('connect', function() {
+      connected = true;
+      console.log("Connected!");
+    });
+    socket.on('error', function() {
+      connected = false;
+      console.log("Connection error!");
+    });
+    socket.on('disconnect', function() {
+      connected = false;
+      console.log("Disconnected!");
+    });
+
+    ext._getStatus = function() {
+      if(connected){return{status: 2, msg: 'Ready'};}
+      else{return{status: 1, msg: 'Not connected to helper app'};}
+    };
+
+    ext._shutdown = function() {
+      //TODO tell helper app to shut off server
+    };
+
+}});}});
 // <<
 })({});
