@@ -96,6 +96,7 @@ function(gotRest) {
   else {
     // Finish initialization with the file just loaded
     finishInitialization(ext);
+    ext._getStatus();
   }
 });
   }
