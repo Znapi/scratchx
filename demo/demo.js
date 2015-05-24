@@ -94,7 +94,6 @@ function(gotRest) {
   else {
     // Finish initialization with the file just loaded
     finishInitialization(ext);
-    console.log(JSON.toString(ext._getStatus()));
   }
 });
   }

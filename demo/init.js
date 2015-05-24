@@ -44,5 +44,4 @@ function finishInitialization(ext) {
   ext._shutdown = function() {
     //TODO tell helper app to shut off server
   };
-  console.log("Done");
 }
