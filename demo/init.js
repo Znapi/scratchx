@@ -18,8 +18,8 @@ function finishInitialization(ext) {
   }
 
 
-  /* Set up connection to helper app*/
-  
+  /* Set up connection to helper app */
+
   var socket = io("http://localhost:25565");
   socket.on('connect', function() {
     connected = true;
@@ -42,5 +42,5 @@ function finishInitialization(ext) {
   ext._shutdown = function() {
     //TODO tell helper app to shut off server
   };
-
+  console.log("Done");
 }
