@@ -1,3 +1,5 @@
+var connected = false;
+
 function finishInitialization(ext) {
 
   /* Set block function definitions */
