@@ -46,7 +46,7 @@ ScratchExtensions.register('Demo extension', descriptor, ext);
 
 /*
 The purpose of the code executed in this file is to retrieve all neccessary
-resources, and then retrieve and run the initialization file.
+resources, and, if successful, retrieve and run the initialization file.
 */
 
 /**
