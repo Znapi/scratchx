@@ -84,43 +84,22 @@ function(gotSocketIO) {
     // This extension does no more work from here on because the socket.io coudl not be retrieved
   }
   else {
-    // Get block function definitions
-    includeFile(resourcesURL + "blocks.js", // Callback
+    // Get rest of extension initialization now that socket.io has been retrieved function definitions
+    includeFile(resourcesURL + "init.js", // Callback
 
 // Initialization: Step 3
-function(gotBlocks) {
-  if(!gotBlocks) {
-    ext._getStatus=function(){return{status:0, msg:'Could not retrieve block function definitions'}};
-    // The extension does no more work from here on because the block definitions could not be retrieved
+function(gotRest) {
+  if(!gotRest) {
+    ext._getStatus=function(){return{status:0, msg:'Could not retrieve initialization file'}};
+    // The extension does no more work from here on because the initialization file could not be retrieved
   }
   else {
-    // Set the block funciton definitions with the newly loaded file
-    setBlockFunctions(ext);
+    // Finish initialization with the file just loaded
+    finishInitialization(ext);
+  }
+});
+  }
+});
 
-    // Set up connection to helper app
-    var socket = io("http://localhost:25565");
-    socket.on('connect', function() {
-      connected = true;
-      console.log("Connected!");
-    });
-    socket.on('error', function() {
-      connected = false;
-      console.log("Connection error!");
-    });
-    socket.on('disconnect', function() {
-      connected = false;
-      console.log("Disconnected!");
-    });
-
-    ext._getStatus = function() {
-      if(connected){return{status: 2, msg: 'Ready'};}
-      else{return{status: 1, msg: 'Not connected to helper app'};}
-    };
-
-    ext._shutdown = function() {
-      //TODO tell helper app to shut off server
-    };
-
-}});}});
 // <<
 })({});
