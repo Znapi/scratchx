@@ -25,7 +25,7 @@
     blocks: [
       // Block type, block name, function name
       ['w', 'Queue packet %m.packets', 'queue_packet'],
-      [' ', 'Send queued packets', 'flush_packets'],
+      [' ', 'Send queued packets', 'flush_outbound'],
       ['w', 'Process inbound queue', 'read_inbound'],
     ],
     menus: {
