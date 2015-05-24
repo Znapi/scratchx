@@ -19,7 +19,7 @@
   ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
   ext.queue_packet=emptySynchronomous;
   ext.flush_packets=empty;
-  ext.read_inbound=emptySynchonomous;
+  ext.read_inbound=emptySynchronomous;
 
   var descriptor = {
     blocks: [
