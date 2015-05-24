@@ -1,4 +1,5 @@
 (function(ext) {
+var resourcesURL = "http://znapi.github.io/scratchx/demo/"; // Where other neccessary js files can be found
 
 /************************************\
 * Scratch Extension boilerplate code *
@@ -13,11 +14,14 @@ explicitly set to 'unready' because the extension still has to initialize
 after it is loaded.
 */
 
+ext.queue_packet=function(packet,callback){callback();};
+ext.flush_outbound=function(){};
+ext.send_packet=function(){};
+ext.read_inbound=function(callback){callback();};
+ext.set_recieve_action=function(){};
+
 ext._shutdown=function(){};
 ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
-ext.queue_packet=function(packet,callback){callback();};
-ext.flush_packets=function(){};
-ext.read_inbound=function(callback){callback();};
 
 var descriptor = {
   blocks: [
@@ -31,7 +35,7 @@ var descriptor = {
   ],
   menus: {
     boolean: ['true', 'false'],
-    packets: ['null', 'menu test'],
+    packets: [],
   },
   url: 'http://znapi.github.io/scratchx/demo/about.html'
 };
@@ -76,7 +80,6 @@ function includeFile(url, callback) {
   };
   ajax.send(null);
 }
-var resourcesURL = "http://znapi.github.io/scratchx/demo/";
 
 // Initialization: Step 1
 // Get socket.io
