@@ -96,7 +96,7 @@ function(gotSocketIO) {
     var status = {status: 1, msg: "Trying to connect to helper app"};
     ext._getStatus=function(){return status;}
     var socket = io("http://localhost:25565");
-    socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"});
+    socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"}});
     socket.on("disconnect", function(){console.log("Disconnected!"); status={status: 1, msg:"Disconnected by helper app! Restart the helper app's server"});
     }
   }
