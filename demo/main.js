@@ -102,5 +102,5 @@ function(gotSocketIO) {
       else return {status: 1, msg: "Trying to connect to helper app"};
     }
   }
-}
+});
 })({});
