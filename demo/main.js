@@ -99,7 +99,7 @@ function(gotSocketIO) {
     socket.on("disconnect", function(){console.log("Disconnected!"); connected="Disconnected by helper app! Restart the helper app's server."});
     ext._getStatus = function() {
       if(connected) return {status: 2, msg: "Ready"};
-      else if(!connected) return {status: 1, msg: "Trying to connect to helper app"};
+      else if(connected = false) return {status: 1, msg: "Trying to connect to helper app"};
       else return {status: 1, msg: connected}
     }
   }
