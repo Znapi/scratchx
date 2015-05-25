@@ -92,20 +92,15 @@ function(gotSocketIO) {
     // This extension does no more work from here on because the socket.io is neccessary for the extension
   }
   else {
-    // Get initialization file now that all resources have been loaded
-    includeFile(resourcesURL+"init.js", // Callback
-
-// Initialization: Step 3
-function(gotInitFile) {
-  if(!gotInitFile) {
-    ext._getStatus=function(){return{status:0, msg:'Could not retrieve initialization file'}};
-    // The extension does no more work from here on because the initialization file is neccessary to complete initialization
+    // Finish initialization
+    var connected = false;
+    var socket = io("http://localhost:25565");
+    socket.on("connect", function(){console.log("Connected!"); connected=true;});
+    socket.on("disconnect", function(){console.log("Disconnected!"); connected=false;});
+    ext.getStatus = function() {
+      if(connected) return {status: 2, msg: "Ready"};
+      else return {status: 1, msg: "Trying to connect to helper app"};
+    }
   }
-  else {
-    // Finish initialization with the file just loaded
-    initialize(ext);
-  }
-});
-  }
-});
+}
 })({});

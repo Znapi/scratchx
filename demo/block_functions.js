@@ -1,9 +1,4 @@
-var connected = false;
-
-function initializeBlocks(ext, appi) {
-
-  /* Set block function definitions */
-
+function setBlockFuncs(ext, appi) {
   // Send a packet over the network immediately
   ext.send_packet = function(packet) {
     if(!appi.connected) return;
