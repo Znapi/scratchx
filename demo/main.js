@@ -35,7 +35,7 @@ var descriptor = {
   ],
   menus: {
     boolean: ['true', 'false'],
-    packets: [],
+    packets: ['place holder'],
   },
   url: 'http://znapi.github.io/scratchx/demo/about.html'
 };
