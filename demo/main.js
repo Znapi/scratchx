@@ -101,6 +101,7 @@ function(gotSocketIO) {
     socket.on("disconnect", function(){console.log("Disconnected!"); status={status: 1, msg:"Disconnected by helper app! Restart the helper app's server"}});
 
     ext.queue_packet = function(packet, callback) {
+      console.log("Loll");
       socket.emit('queue_packet', packet);
       callback();
     }
