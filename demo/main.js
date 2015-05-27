@@ -107,6 +107,17 @@ function(gotSocketIO) {
     socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"}});
     socket.on("disconnect", function(){console.log("Disconnected!"); status={status: 1, msg:"Disconnected by helper app! Restart the helper app's server"}});
 
+    var variables = [];
+
+    ext.openGUI = function() {
+      guiGo(location);
+    }
+    ext.create_variable = function() {
+      guiGo("create_var");
+    }
+    ext.delete_variable = function() {
+      guiGo("delete_var");
+    }
     ext.queue_packet = function(packet) {
       socket.emit('queue_packet', packet);
     }
@@ -124,6 +135,11 @@ function(gotSocketIO) {
     ext.set_recieve_action = function(action) {
       readInboundOnRecieve = action;
     }
+
+    function guiGo(location) {
+
+    }
   }
+
 });
 })({});
