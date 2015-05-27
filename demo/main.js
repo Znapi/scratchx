@@ -109,7 +109,8 @@ function(gotSocketIO) {
 
     var variables = [];
 
-    ext.openGUI = function() {
+    ext.open_gui = function() {
+      console.log("lol");
       guiGo(location);
     }
     ext.create_variable = function() {
@@ -136,7 +137,7 @@ function(gotSocketIO) {
       readInboundOnRecieve = action;
     }
 
-    var guiWnd = {closed: false};
+    var guiWnd;
     function guiGo(location) {
       if(guiWnd == null) {
         guiWnd = window.open("http://znapi.github.io/scratchx/demo/gui.html");
