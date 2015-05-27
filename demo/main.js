@@ -136,8 +136,14 @@ function(gotSocketIO) {
       readInboundOnRecieve = action;
     }
 
+    var guiWnd = {closed: false};
     function guiGo(location) {
-      
+      if(guiWnd == null) {
+        guiWnd = window.open("http://znapi.github.io/scratchx/demo/gui.html");
+      }
+      else {
+        guiWnd.focus();
+      }
     }
   }
 
