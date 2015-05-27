@@ -14,7 +14,9 @@ explicitly set to 'unready' because the extension still has to initialize
 after it is loaded.
 */
 
-ext.create_new_packet=function(){};
+ext.open_gui=function(){alert("Extension is still initializing\nGUI not loaded")};
+ext.create_variable=function(){};
+ext.delete_variable=function(){};
 ext.queue_packet=function(){};
 ext.flush_outbound=function(){};
 ext.send_packet=function(){};
@@ -27,7 +29,9 @@ ext._getStatus=function(){return{status:1,msg:'Initializing'}};
 var descriptor = {
   blocks: [
     // Block type, block name, function name
-    [null, 'Define new packet', 'create_new_packet'],
+    [null, 'Open Packet GUI', 'open_gui'],
+    [null, 'Create new Network Variable', 'create_variable'],
+    [null, 'Delete Network Variable', 'delete_variable'],
     ['--'],
     [' ', 'queue packet %m.packets', 'queue_packet'],
     [' ', 'send queued packets', 'flush_outbound'],
@@ -114,6 +118,7 @@ function(gotSocketIO) {
     }
     ext.read_inbound = function(callback) {
       // read inbound queue
+      callback();
     }
     var readInboundOnRecieve = false;
     ext.set_recieve_action = function(action) {
