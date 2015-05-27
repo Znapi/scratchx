@@ -14,19 +14,22 @@ explicitly set to 'unready' because the extension still has to initialize
 after it is loaded.
 */
 
-ext.queue_packet=function(packet,callback){callback();};
+ext.create_new_packet=function(){};
+ext.queue_packet=function(){};
 ext.flush_outbound=function(){};
 ext.send_packet=function(){};
-ext.read_inbound=function(callback){callback();};
+ext.read_inbound=function(c){c()};
 ext.set_recieve_action=function(){};
 
 ext._shutdown=function(){};
-ext._getStatus=function(){return{status: 1, msg: 'Initializing'}};
+ext._getStatus=function(){return{status:1,msg:'Initializing'}};
 
 var descriptor = {
   blocks: [
     // Block type, block name, function name
-    ['w', 'queue packet %m.packets', 'queue_packet'],
+    [null, 'Define new packet', 'create_new_packet'],
+    ['--'],
+    [' ', 'queue packet %m.packets', 'queue_packet'],
     [' ', 'send queued packets', 'flush_outbound'],
     [' ', 'send packet %m.packets', 'send_packet'],
     ['-'],
@@ -100,10 +103,21 @@ function(gotSocketIO) {
     socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"}});
     socket.on("disconnect", function(){console.log("Disconnected!"); status={status: 1, msg:"Disconnected by helper app! Restart the helper app's server"}});
 
-    ext.queue_packet = function(packet, callback) {
-      console.log("Loll");
+    ext.queue_packet = function(packet) {
       socket.emit('queue_packet', packet);
-      callback();
+    }
+    ext.flush_outbound = function() {
+      socket.emit('flush_outbound');
+    }
+    ext.send_packet = function(packet) {
+      socket.emit('send_packet');
+    }
+    ext.read_inbound = function(callback) {
+      // read inbound queue
+    }
+    var readInboundOnRecieve = false;
+    ext.set_recieve_action = function(action) {
+      readInboundOnRecieve = action;
     }
   }
 });
