@@ -137,7 +137,7 @@ function(gotSocketIO) {
     }
 
     function guiGo(location) {
-
+      
     }
   }
 
