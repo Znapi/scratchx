@@ -128,12 +128,13 @@ function(gotSocketIO) {
       socket.emit('send_packet');
     }
     ext.read_inbound = function(callback) {
-      // read inbound queue
+      socket.emit('read_inbound')
       callback();
     }
     var readInboundOnRecieve = false;
     ext.set_recieve_action = function(action) {
       readInboundOnRecieve = action;
+      socket.emit('set_recieve_action', action);
     }
 
     function guiGo(location) {
