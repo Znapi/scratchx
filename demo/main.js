@@ -131,11 +131,11 @@ function(gotSocketIO) {
       socket.emit('read_inbound')
       callback();
     }
-    var readInboundOnRecieve = false;
+    var readWhenRecieved = false;
     ext.set_recieve_action = function(action) {
-      if(action === "do") readInboundOnRecieve = true;
-      else readInboundOnRecieve = false;
-      socket.emit('set_recieve_action', readInboundOnRecieve);
+      if(action === "do") readWhenRecieved = true;
+      else readWhenRecieved = false;
+      socket.emit('set_recieve_action', readWhenRecieved);
     }
 
     function guiGo(location) {
