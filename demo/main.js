@@ -38,7 +38,7 @@ var descriptor = {
     [' ', 'send packet %m.packets', 'send_packet'],
     ['-'],
     ['w', 'read recieved packets', 'read_inbound'],
-    [' ', '%m.do read packets when recieved', 'set_recieve_action', do[1]],
+    [' ', '%m.do read packets when recieved', 'set_recieve_action', "do"],
   ],
   menus: {
     do: ["do", "don't"],
