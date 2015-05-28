@@ -37,11 +37,11 @@ var descriptor = {
     [' ', 'send queued packets', 'flush_outbound'],
     [' ', 'send packet %m.packets', 'send_packet'],
     ['-'],
-    ['w', 'process inbound packets', 'read_inbound'],
-    [' ', 'set auto process inbound to %m.boolean', 'set_recieve_action'],
+    ['w', 'read recieved packets', 'read_inbound'],
+    [' ', '%m.do read packets when recieved', 'set_recieve_action', do[1]],
   ],
   menus: {
-    boolean: ['true', 'false'],
+    do: ["do", "don't"],
     packets: ['place holder'],
   },
   url: 'http://znapi.github.io/scratchx/demo/about.html'
