@@ -133,8 +133,9 @@ function(gotSocketIO) {
     }
     var readInboundOnRecieve = false;
     ext.set_recieve_action = function(action) {
-      readInboundOnRecieve = action;
-      socket.emit('set_recieve_action', action);
+      if(action === "do") readInboundOnRecieve = true;
+      else readInboundOnRecieve = false;
+      socket.emit('set_recieve_action', readInboundOnRecieve);
     }
 
     function guiGo(location) {
