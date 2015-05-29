@@ -124,11 +124,11 @@ function(gotSocketIO) {
     socket.on('new_packet_defs', function(newPacketNames) { // An array of packet names, with index corresponding to id
       console.log("recieved new packet defs");
       packets = new Object();
-      descriptor.packets = new Array(0);
+      descriptor.menus.packets = new Array(0);
       for(var index in newPacketNames) {
         console.log(index + newPacketNames[index]);
         packets[newPacketNames[index]] = index;
-        descriptor.packets.push(newPacketNames[index]);
+        descriptor.menus.packets.push(newPacketNames[index]);
       }
       reregisterExtension();
     });
