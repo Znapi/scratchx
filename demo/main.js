@@ -132,6 +132,7 @@ function(gotSocketIO) {
 
     ext.open_gui = function() {
       guiGo(location);
+      socket.emit('get_packet_defs');
     }
     ext.create_variable = function() {
       guiGo("create_var");
