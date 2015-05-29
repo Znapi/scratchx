@@ -168,7 +168,7 @@ function(gotSocketIO) {
     }
 
     function reregisterExtension() {
-      ScratchExtensions.unregister('Demo Extension');
+      ScratchExtensions.unregister('Demo extension');
       ScratchExtensions.register('Demo extension', descriptor, ext);
     }
   }
