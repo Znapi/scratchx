@@ -110,9 +110,9 @@ function(gotSocketIO) {
       socket.emit('get_packet_defs');
       console.log("requested packet defs");
     });
-    socket.on("reconnect", function() {
+    /*socket.on("reconnect", function() {
       socket.emit('get_packet_defs');
-    });
+    });*/
     socket.on("disconnect", function() {
       console.log("Disconnected!");
       status = {status: 1, msg: "Disconnected by helper app! Restart the helper app's server"};
