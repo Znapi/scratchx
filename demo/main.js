@@ -130,6 +130,7 @@ function(gotSocketIO) {
         packets[newPacketNames[index]] = index;
         descriptor.packets.push(newPacketNames[index]);
       }
+      reregisterExtension();
     });
 
     ext.open_gui = function() {
@@ -164,6 +165,11 @@ function(gotSocketIO) {
 
     function guiGo(location) {
       socket.emit('gui', location);
+    }
+
+    function reregisterExtension() {
+      ScratchExtensions.unregister('Demo Extension');
+      ScratchExtensions.register('Demo extension', descriptor, ext);
     }
   }
 
