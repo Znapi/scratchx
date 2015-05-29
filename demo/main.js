@@ -122,7 +122,7 @@ function(gotSocketIO) {
 
     var packets; // Object with keys for packet names, and are used to access id number associated with packet
     socket.on('new_packet_defs', function(newPacketNames) { // An array of packet names, with index corresponding to id
-      console.log(newPacketNames[0]);
+      console.log(newPacketNames[2]);
       console.log("recieved new packet defs");
       packets = new Object();
       for(var index in newPacketNames) {
