@@ -104,17 +104,17 @@ function(gotSocketIO) {
     ext._getStatus=function(){return status;}
     // Here it begins asking the server to serve socket.io
     var socket = io("http://localhost:25565");
-    socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"}});
+    socket.on("connect", function(){console.log("Connected!"); status={status: 2, msg:"Ready"}; socket.emit('get_packet_defs')});
     socket.on("disconnect", function(){console.log("Disconnected!"); status={status: 1, msg:"Disconnected by helper app! Restart the helper app's server"}});
 
     var variables = [];
 
     var packets; // Object with keys for packet names, and are used to access id number associated with packet
-    socket.on('new_packet_defs', function(newPacketDefs) {
-      packets = newPacketDefs;
-      descriptor.packets = new Array(0);
-      for(var packetName in packets) {
-        descriptor.packets.push(packetName);
+    socket.on('new_packet_defs', function(newPacketNames) { // An array of packet names, with index corresponding to id
+      packets = new Object();
+      for(var index in newPacketNames) {
+        packets[newPacketNames[index]] = index;
+        descriptor.packets.push(newPacketNames[index]);
       }
     });
 
