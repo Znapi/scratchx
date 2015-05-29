@@ -109,6 +109,15 @@ function(gotSocketIO) {
 
     var variables = [];
 
+    var packets; // Object with keys for packet names, and are used to access id number associated with packet
+    socket.on('new_packet_defs', function(newPacketDefs) {
+      packets = newPacketDefs;
+      descriptor.packets = new Array(0);
+      for(var packetName in packets) {
+        descriptor.packets.push(packetName);
+      }
+    });
+
     ext.open_gui = function() {
       guiGo(location);
     }
@@ -118,14 +127,14 @@ function(gotSocketIO) {
     ext.delete_variable = function() {
       guiGo("delete_var");
     }
-    ext.queue_packet = function(packet) {
-      socket.emit('queue_packet', packet);
+    ext.queue_packet = function(packetName) {
+      socket.emit('queue_packet', packets[packetName]);
     }
     ext.flush_outbound = function() {
       socket.emit('flush_outbound');
     }
-    ext.send_packet = function(packet) {
-      socket.emit('send_packet');
+    ext.send_packet = function(packetName) {
+      socket.emit('send_packet', packets[packetName]);
     }
     ext.read_inbound = function(callback) {
       socket.emit('read_inbound')
