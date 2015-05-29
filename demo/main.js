@@ -127,7 +127,7 @@ function(gotSocketIO) {
       packets = new Object();
       for(var index in newPacketNames) {
         packets[newPacketNames[index]] = index;
-        descriptor.packets.push(newPacketNames[index]);
+        //descriptor.packets.push(newPacketNames[index]);
       }
     });
 
