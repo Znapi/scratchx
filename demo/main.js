@@ -108,6 +108,7 @@ function(gotSocketIO) {
       console.log("Connected!");
       status = {status: 2, msg: "Ready"};
       socket.emit('get_packet_defs');
+      console.log("requested packet defs");
     });
     socket.on("disconnect", function() {
       console.log("Disconnected!");
