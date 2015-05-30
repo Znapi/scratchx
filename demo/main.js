@@ -55,7 +55,7 @@ var descriptor = {
     do: ["do", "don't"],
     packets: ['place holder'],
   },
-  url: 'http://znapi.github.io/scratchx/demo/about.html'
+  url: 'https://github.com/Znapi/scratchx/wiki/'
 };
 
 ScratchExtensions.register('Demo extension', descriptor, ext);

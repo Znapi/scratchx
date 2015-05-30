@@ -16,7 +16,7 @@ var descriptor = {
     ['r', 'status code of extension %s', 'get_ext_status'],
     ['r', 'staus message of extension %s', 'get_ext_status_message']
   ],
-  //url: 'http://znapi.github.io/scratchx/demo/about.html'
+  url: 'https://github.com/Znapi/scratchx/wiki/Extension-Status-Getter'
 };
 
 ScratchExtensions.register('Extension Status Getter', descriptor, ext);
