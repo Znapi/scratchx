@@ -76,7 +76,7 @@ var url = "http://localhost:25565/"
 function reserveHelperApp() {
   console.log("Reserving helper app");
   var ajax = new XMLHttpRequest();
-  ajax.open('PUT', url, true);
+  ajax.open(null, url, true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
@@ -93,6 +93,9 @@ function reserveHelperApp() {
 
         default:
         console.log("Request to reserve comms failed");
+        status = {status: 1, msg: "Request to reserve helper app failed"};
+        break;
+
       }
     }
   };
