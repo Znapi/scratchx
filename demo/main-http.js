@@ -72,11 +72,11 @@ resources, and, if successful, retrieve and run the initialization file.
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status;}
 
-var url = "http://localhost:25565"
+var url = "http://localhost"
 function pingHelperApp() {
   console.log("Pinging helper app");
   var ping = new XMLHttpRequest();
-  ping = open('GET', url + "/", true);
+  ping = open('GET', url + "/ping", true);
   ping.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       if(ajax.status===200) status = {status: 2, msg: "Ready"};
