@@ -83,7 +83,7 @@ function pingHelperApp() {
       else                  status = {status: 1, msg: "Trying to connect to helper app"};
     }
   };
-  ping.send();
+  ping.send(null);
 }
 
 var variables = [];
