@@ -76,7 +76,7 @@ var url = "http://localhost:25565/"
 function reserveHelperApp() {
   console.log("Reserving helper app");
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', url, true);
+  ajax.open('GET', url + "connect", true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
@@ -159,5 +159,29 @@ function guiGo(location) {
 function reregisterExtension() {
   ScratchExtensions.unregister('Demo extension');
   ScratchExtensions.register('Demo extension', descriptor, ext);
+}
+
+ext._shutdown = function() {
+  console.log("Un-reserving helper app");
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', url + "disconnect", true);
+  ajax.onreadystatechange = function() {
+    if(ajax.readyState === 4) {
+      switch(ajax.status) {
+
+        case 200:
+        console.log("Succesfully disconnected from helper app");
+        status = {status: 1, msg: "Not connected to helper app"};
+        break;
+
+        default:
+        console.log("Failed to disconnect from helper app");
+        status = {status: 1, msg: "Not connected to helper app"};
+        break;
+
+      }
+    }
+  };
+  ajax.send();
 }
 })({});
