@@ -19,6 +19,6 @@ var descriptor = {
   //url: 'http://znapi.github.io/scratchx/demo/about.html'
 };
 
-ScratchExtensions.register('Extension status getter', descriptor, ext);
+ScratchExtensions.register('Extension Status Getter', descriptor, ext);
 
 })({});
