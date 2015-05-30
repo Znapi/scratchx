@@ -73,7 +73,7 @@ var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status}
 
 var url = "http://localhost:25565/"
-function pingHelperApp() {
+function reserveHelperApp() {
   console.log("Reserving helper app");
   var ajax = new XMLHttpRequest();
   ajax.open('PUT', url, true);
