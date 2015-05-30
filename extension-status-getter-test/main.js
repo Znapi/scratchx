@@ -26,6 +26,7 @@ var descriptor = {
 ScratchExtensions.register('Extension status getter', descriptor, ext);
 
 function updateExtensionList() {
+  console.log(ScratchExtensions.handlers["Extension status getter"]);;
   Object.keys(ScratchExtensions.handlers)
 }
 updateExtensionList();
