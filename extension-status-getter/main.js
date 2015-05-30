@@ -23,4 +23,4 @@ var descriptor = {
 
 ScratchExtensions.register('Extension status getter', descriptor, ext);
 
-}({});
+})({});
