@@ -80,7 +80,7 @@ parameter should be a boolean that says if the file could be loaded or not.
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status;}
 
-var url = "localhost"
+var url = "localhost/"
 var ping = new XMLHttpRequest();
 function pingHelperApp() {
   ping = open("GET", url, true);
@@ -142,7 +142,7 @@ ext.set_recieve_action = function(action) {
 }
 
 function guiGo(location) {
-
+  ping();
 }
 
 function reregisterExtension() {
