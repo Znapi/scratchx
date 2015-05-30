@@ -14,11 +14,11 @@ ext._getStatus=function(){return{status:2,msg:'Ready'}};
 var descriptor = {
   blocks: [
     // Block type, block name, function name
-    ['r', 'status code of extension %s', 'get_ext_status'],
-    ['r', 'staus message of extension %s', 'get_ext_status_message']
+    ['r', 'status code of extension %m.extensions', 'get_ext_status'],
+    ['r', 'staus message of extension %m.extensions', 'get_ext_status_message']
   ],
   menus: {
-    ScratchExtensions.handlers;
+    extensions: ScratchExtensions.handlers,
   },
   //url: 'http://znapi.github.io/scratchx/demo/about.html'
 };
