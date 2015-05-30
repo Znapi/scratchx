@@ -69,14 +69,6 @@ The purpose of the code executed in this file is to retrieve all neccessary
 resources, and, if successful, retrieve and run the initialization file.
 */
 
-/**
-Credit to here: http://stackoverflow.com/a/20518446/3390450,
-Small change to be asynchronous.
-It includes a .js file by url, and to prevent warnings, it is done
-asynchronously and calls a callback function when it's done, and whose only
-parameter should be a boolean that says if the file could be loaded or not.
-*/
-
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status;}
 
