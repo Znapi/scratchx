@@ -81,8 +81,9 @@ var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status;}
 
 var url = "localhost/"
-var ping = new XMLHttpRequest();
 function pingHelperApp() {
+  System.out.println("Pinging helper app");
+  var ping = new XMLHttpRequest();
   ping = open("GET", url, true);
   ping.onreadystatechange = function() {
     if(ajax.status===200) status = {status: 2, msg: "Ready"};
