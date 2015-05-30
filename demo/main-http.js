@@ -79,8 +79,20 @@ function reserveHelperApp() {
   ajax.open('PUT', url, true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
-      if(ajax.status === 200) status = {status: 2, msg: "Ready"};
-      else                    status = {status: 1, msg: "Trying to connect to helper app"};
+      switch(ajax.status) {
+
+        case 200:
+        console.log("Reserved communication with helper app");
+        status = {status: 2, msg: "Ready"};
+        break;
+
+        case 409:
+        console.log("Helper app refused to reserve communication");
+        status = {status: 1, msg: "Helper app refused commmunication"};
+        break;
+
+        default:
+        console.log("Request to reserve comms failed");
     }
   };
   ajax.send();
