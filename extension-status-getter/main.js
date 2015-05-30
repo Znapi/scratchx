@@ -9,7 +9,7 @@ ext.get_ext_status_message = function(extName) {
 }
 
 ext._shutdown=function(){};
-ext._getStatus=function(){return{status:2,msg:'Ready'}};
+ext._getStatus=function(){return{status:2,msg:'Readye'}};
 
 var descriptor = {
   blocks: [
@@ -22,3 +22,5 @@ var descriptor = {
 };
 
 ScratchExtensions.register('Extension status getter', descriptor, ext);
+
+}({});
