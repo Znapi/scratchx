@@ -90,7 +90,7 @@ function pingHelperApp() {
       if(ajax.status===200) status = {status: 2, msg: "Ready"};
       else                  status = {status: 1, msg: "Trying to connect to helper app"};
     }
-  }
+  };
   ping.send();
 }
 
