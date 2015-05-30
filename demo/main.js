@@ -124,9 +124,6 @@ function(gotSocketIO) {
       socket.emit('get_packet_defs');
       console.log("server ready...requested data");
     });
-    /*socket.on("reconnect", function() {
-      socket.emit('get_packet_defs');
-    });*/
     socket.on('disconnect', function() {
       console.log("Disconnected!");
       status = {status: 1, msg: "Disconnected by helper app! Restart the helper app's server"};
@@ -185,6 +182,7 @@ function(gotSocketIO) {
     });
     ext.set_peer_finder_service = function(newIP) {
       peerFinderService = newIP;
+      socket.emit('new_peer_finder_service', peerFinderService);
     }
     var becamePeerFinderService = false;
     ext.became_peer_finder_service = function() {
