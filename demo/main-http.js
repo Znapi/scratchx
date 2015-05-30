@@ -76,11 +76,11 @@ var url = "http://localhost:25565/"
 function pingHelperApp() {
   console.log("Pinging helper app");
   var ping = new XMLHttpRequest();
-  ping = open('GET', url, true);
+  ping.open('GET', url, true);
   ping.onreadystatechange = function() {
     if(ping.readyState === 4) {
-      if(ping.status===200) status = {status: 2, msg: "Ready"};
-      else                  status = {status: 1, msg: "Trying to connect to helper app"};
+      if(ping.status === 200) status = {status: 2, msg: "Ready"};
+      else                    status = {status: 1, msg: "Trying to connect to helper app"};
     }
   };
   ping.send(null);
