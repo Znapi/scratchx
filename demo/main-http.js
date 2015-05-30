@@ -143,7 +143,7 @@ ext.set_recieve_action = function(action) {
 }
 
 function guiGo(location) {
-  ping();
+  pingHelperApp();
 }
 
 function reregisterExtension() {
