@@ -17,6 +17,12 @@ after it is loaded.
 ext.open_gui=function(){alert("Extension is still initializing\nGUI not loaded")};
 ext.create_variable=function(){};
 ext.delete_variable=function(){};
+
+ext.poll_get_server=function(){return false};
+ext.set_peer_finder_service=function(){};
+ext.became_finder_service=function(){return false};
+ext.get_ip_address=function(){};
+
 ext.queue_packet=function(){};
 ext.flush_outbound=function(){};
 ext.send_packet=function(){};
@@ -39,6 +45,11 @@ var descriptor = {
     ['-'],
     ['w', 'read recieved packets', 'read_inbound'],
     [' ', '%m.do read packets when recieved', 'set_recieve_action', "do"],
+    ['--'],
+    ['h', 'When needs new peer finder service', 'poll_get_server'],
+    [' ', 'tell extension that peer finder service is %s', 'set_peer_finder_service', "000.000.000.000"],
+    ['h', 'When became peer finder service', 'became_finder_service']
+    ['r', 'ip address', 'get_ip_address'],
   ],
   menus: {
     do: ["do", "don't"],
@@ -104,16 +115,19 @@ function(gotSocketIO) {
     ext._getStatus=function(){return status;}
     // Here it begins asking the server for connection
     var socket = io("http://localhost:25565");
-    socket.on("connect", function() {
+    socket.on('connect', function() {
       console.log("Connected!");
       status = {status: 2, msg: "Ready"};
+    });
+    socket.on('ready', function() {
+      socket.emit('get_ip_address');
       socket.emit('get_packet_defs');
       console.log("requested packet defs");
     });
     /*socket.on("reconnect", function() {
       socket.emit('get_packet_defs');
     });*/
-    socket.on("disconnect", function() {
+    socket.on('disconnect', function() {
       console.log("Disconnected!");
       status = {status: 1, msg: "Disconnected by helper app! Restart the helper app's server"};
     });
@@ -161,6 +175,33 @@ function(gotSocketIO) {
       else readWhenRecieved = false;
       socket.emit('set_recieve_action', readWhenRecieved);
     }
+    var needNewPeerFinderService = true;
+    var peerFinderService = null;
+    ext.poll_get_peer_finder_service = function() {
+      return needNewPeerFinderService;
+    }
+    socket.on('get_new_peer_finder_service', function() {
+      needNewPeerFinderService = true;
+    });
+    ext.set_peer_finder_service = function(newIP) {
+      if(newIP = myIP) becameFinderService = false;
+      needNewPeerFinderService = false;
+      peerFinderService = newIP;
+    }
+    var becamePeerFinderService = false;
+    ext.became_peer_finder_service = function() {
+      return becamePeerFinderService;
+    }
+    socket.on('became_peer_finder_service', function() {
+      becamePeerFinderService = true;
+    });
+    var myIP = null;
+    ext.get_ip_address = function() {
+      return myIP;
+    }
+    socket.on('serving_ip', function(ip) {
+      myIP = ip;
+    });
 
     function guiGo(location) {
       socket.emit('gui', location);
