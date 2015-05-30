@@ -76,7 +76,7 @@ var url = "http://localhost:25565/"
 function reserveHelperApp() {
   console.log("Reserving helper app");
   var ajax = new XMLHttpRequest();
-  ajax.open('PUT', url, true);
+  ajax.open('GET', url, true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
