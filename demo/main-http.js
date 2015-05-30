@@ -78,8 +78,8 @@ function pingHelperApp() {
   var ping = new XMLHttpRequest();
   ping = open('GET', url, true);
   ping.onreadystatechange = function() {
-    if(ajax.readyState === 4) {
-      if(ajax.status===200) status = {status: 2, msg: "Ready"};
+    if(ping.readyState === 4) {
+      if(ping.status===200) status = {status: 2, msg: "Ready"};
       else                  status = {status: 1, msg: "Trying to connect to helper app"};
     }
   };
