@@ -18,7 +18,7 @@ var descriptor = {
     ['r', 'staus message of extension %m.extensions', 'get_ext_status_message']
   ],
   menus: {
-    extensions: ScratchExtensions.handlers,
+    extensions: ScratchExtensions.handlers.keys(),
   },
   //url: 'http://znapi.github.io/scratchx/demo/about.html'
 };
