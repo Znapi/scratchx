@@ -74,16 +74,16 @@ ext._getStatus=function(){return status}
 
 var url = "http://localhost:25565/"
 function pingHelperApp() {
-  console.log("Pinging helper app");
-  var ping = new XMLHttpRequest();
-  ping.open('GET', url, true);
-  ping.onreadystatechange = function() {
-    if(ping.readyState === 4) {
-      if(ping.status === 200) status = {status: 2, msg: "Ready"};
+  console.log("Reserving helper app");
+  var ajax = new XMLHttpRequest();
+  ajax.open('PUT', url, true);
+  ajax.onreadystatechange = function() {
+    if(ajax.readyState === 4) {
+      if(ajax.status === 200) status = {status: 2, msg: "Ready"};
       else                    status = {status: 1, msg: "Trying to connect to helper app"};
     }
   };
-  ping.send(null);
+  ajax.send();
 }
 
 var variables = [];
@@ -137,7 +137,7 @@ ext.set_recieve_action = function(action) {
 }
 
 function guiGo(location) {
-  pingHelperApp();
+  reserveHelperApp();
 }
 
 function reregisterExtension() {
