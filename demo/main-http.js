@@ -80,11 +80,11 @@ parameter should be a boolean that says if the file could be loaded or not.
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status;}
 
-var url = "localhost/"
+var url = "http://localhost:25565"
 function pingHelperApp() {
   console.log("Pinging helper app");
   var ping = new XMLHttpRequest();
-  ping = open("GET", url, true);
+  ping = open("GET", url + "/", true);
   ping.onreadystatechange = function() {
     if(ajax.status===200) status = {status: 2, msg: "Ready"};
     else                  status = {status: 1, msg: "Trying to connect to helper app"};
