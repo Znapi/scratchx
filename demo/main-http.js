@@ -164,7 +164,7 @@ function reregisterExtension() {
 ext._shutdown = function() {
   console.log("Un-reserving helper app");
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', url + "disconnect", true);
+  ajax.open('PUT', url + "disconnect", true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
