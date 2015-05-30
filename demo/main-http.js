@@ -93,6 +93,7 @@ function reserveHelperApp() {
 
         default:
         console.log("Request to reserve comms failed");
+      }
     }
   };
   ajax.send();
