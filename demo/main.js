@@ -48,7 +48,7 @@ var descriptor = {
     ['--'],
     ['h', 'When needs new peer finder service', 'poll_get_server'],
     [' ', 'tell extension that peer finder service is %s', 'set_peer_finder_service', "000.000.000.000"],
-    ['h', 'When became peer finder service', 'became_finder_service']
+    ['h', 'When became peer finder service', 'became_finder_service'],
     ['r', 'ip address', 'get_ip_address'],
   ],
   menus: {
