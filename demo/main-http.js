@@ -82,7 +82,7 @@ ext._getStatus=function(){return status;}
 
 var url = "localhost/"
 function pingHelperApp() {
-  System.out.println("Pinging helper app");
+  console.log("Pinging helper app");
   var ping = new XMLHttpRequest();
   ping = open("GET", url, true);
   ping.onreadystatechange = function() {
