@@ -122,7 +122,7 @@ function(gotSocketIO) {
     socket.on('ready', function() {
       socket.emit('get_ip');
       socket.emit('get_packet_defs');
-      console.log("requested packet defs");
+      console.log("server ready...requested data");
     });
     /*socket.on("reconnect", function() {
       socket.emit('get_packet_defs');
