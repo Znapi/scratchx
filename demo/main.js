@@ -120,7 +120,7 @@ function(gotSocketIO) {
       status = {status: 2, msg: "Ready"};
     });
     socket.on('ready', function() {
-      socket.emit('get_ip_address');
+      socket.emit('get_ip');
       socket.emit('get_packet_defs');
       console.log("requested packet defs");
     });
@@ -178,19 +178,17 @@ function(gotSocketIO) {
     var needNewPeerFinderService = true;
     var peerFinderService = null;
     ext.poll_get_peer_finder_service = function() {
-      return needNewPeerFinderService;
+      return !(needNewPeerFinderService = false);
     }
     socket.on('get_new_peer_finder_service', function() {
       needNewPeerFinderService = true;
     });
     ext.set_peer_finder_service = function(newIP) {
-      if(newIP = myIP) becameFinderService = false;
-      needNewPeerFinderService = false;
       peerFinderService = newIP;
     }
     var becamePeerFinderService = false;
     ext.became_peer_finder_service = function() {
-      return becamePeerFinderService;
+      return !(becamePeerFinderService = false);
     }
     socket.on('became_peer_finder_service', function() {
       becamePeerFinderService = true;
