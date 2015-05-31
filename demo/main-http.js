@@ -155,8 +155,8 @@ function connectToHA() {
         case 200:
         console.log("Connection successful");
         var tmp = new Int8Array(ajax.response);
-        id = new String(tmp[0]) + new String(tmp[1]) + new String(tmp[2]);
-        console.log(id);
+        id = "/" + new String(tmp[0]) + new String(tmp[1]) + new String(tmp[2]);
+        console.log(url + id);
         status = {status: 1, msg: "Ready"};
         break;
 
@@ -175,14 +175,11 @@ function pingHA() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
         case 200:
-        console.log("Connection successful");
-        var id = new Int8Array(ajax.response);
-        console.log(new String(id[0]) + new String(id[1]) + new String(id[2]));
-        status = {status: 1, msg: "Ready"};
+        console.log("Ping successful");
         break;
 
         default:
-        console.log("Connection failed")
+        console.log("Ping failed")
       }
     }
   };
@@ -196,14 +193,11 @@ function disconnectFromHA() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
         case 200:
-        console.log("Connection successful");
-        var id = new Int8Array(ajax.response);
-        console.log(new String(id[0]) + new String(id[1]) + new String(id[2]));
-        status = {status: 1, msg: "Ready"};
+        console.log("Disconnection successful");
         break;
 
         default:
-        console.log("Connection failed")
+        console.log("Disconnection failed")
       }
     }
   };
