@@ -207,7 +207,7 @@ function disconnectFromHA() {
       }
     }
   };
-  Uint8Array data = new Uint8Array(1);
+  var data = new Uint8Array(1);
   data[0] = 0;
   ajax.send(data);
 }
