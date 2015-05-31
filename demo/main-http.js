@@ -145,7 +145,7 @@ function connectToHA() {
       switch(ajax.status) {
         case 200:
         console.log("Connection successful");
-        console.log(ajax.response.byteLength);
+        console.log(Int8Array(ajax.response).toString());
         break;
 
         case 409:
