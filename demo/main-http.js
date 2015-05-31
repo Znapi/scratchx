@@ -139,6 +139,7 @@ var url = "http://localhost:25565"
 function connectToHA() {
   var ajax = new XMLHttpRequest();
   ajax.open('GET', url, true);
+  ajax.responseType = "arraybuffer";
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
