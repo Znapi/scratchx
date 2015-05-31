@@ -146,7 +146,7 @@ function connectToHA() {
         case 200:
         console.log("Connection successful");
         var id = new Int8Array(ajax.response);
-        console.log(id[0] + id[1] + id[2]);
+        console.log(id[0].toString() + id[1].toString + id[2].toString);
         break;
 
         case 409:
