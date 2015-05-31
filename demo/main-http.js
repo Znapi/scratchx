@@ -72,36 +72,6 @@ resources, and, if successful, retrieve and run the initialization file.
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status}
 
-var url = "http://localhost:25565/"
-function reserveHelperApp() {
-  console.log("Reserving helper app");
-  var ajax = new XMLHttpRequest();
-  ajax.open('GET', url + "connect", true);
-  ajax.onreadystatechange = function() {
-    if(ajax.readyState === 4) {
-      switch(ajax.status) {
-
-        case 200:
-        console.log("Reserved communication with helper app");
-        status = {status: 2, msg: "Ready"};
-        break;
-
-        case 409:
-        console.log("Helper app refused to reserve communication");
-        status = {status: 1, msg: "Helper app refused commmunication"};
-        break;
-
-        default:
-        console.log("Request to reserve comms failed");
-        status = {status: 1, msg: "Request to reserve helper app failed"};
-        break;
-
-      }
-    }
-  };
-  ajax.send();
-}
-
 var variables = [];
 var packets; // Object with keys for packet names, and are used to access id number associated with packet
 
@@ -153,7 +123,7 @@ ext.set_recieve_action = function(action) {
 }
 
 function guiGo(location) {
-  reserveHelperApp();
+  connectToHA();
 }
 
 function reregisterExtension() {
@@ -162,26 +132,30 @@ function reregisterExtension() {
 }
 
 ext._shutdown = function() {
-  console.log("Un-reserving helper app");
+
+}
+
+var url = "http://localhost:25565"
+function connectToHA() {
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', url + "disconnect", true);
+  ajax.open('GET', url, true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
-
         case 200:
-        console.log("Succesfully disconnected from helper app");
-        status = {status: 1, msg: "Not connected to helper app"};
+        console.log("Connection successful");
+        break;
+
+        case 409:
+        console.log("Another scratch instance is already connected");
         break;
 
         default:
-        console.log("Failed to disconnect from helper app");
-        status = {status: 1, msg: "Not connected to helper app"};
-        break;
-
+        console.log("Connection failed")
       }
     }
   };
   ajax.send();
 }
+
 })({});
