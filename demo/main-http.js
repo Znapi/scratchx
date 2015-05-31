@@ -94,7 +94,7 @@ ext.get_ip_address = function() {
 }
 
 ext.open_gui = function() {
-  guiGo(location);
+  guiGo(null);
 }
 ext.create_variable = function() {
   guiGo("create_var");
@@ -123,7 +123,15 @@ ext.set_recieve_action = function(action) {
 }
 
 function guiGo(location) {
-  connectToHA();
+  if(location===null) {
+    connectToHA();
+  }
+  else if(location==="create_var") {
+    pingHA();
+  }
+  else if(location==="delete_var") {
+    disconnectFromHA();
+  }
 }
 
 function reregisterExtension() {
@@ -136,6 +144,7 @@ ext._shutdown = function() {
 }
 
 var url = "http://localhost:25565"
+var id = null;
 function connectToHA() {
   var ajax = new XMLHttpRequest();
   ajax.open('GET', url, true);
@@ -145,12 +154,10 @@ function connectToHA() {
       switch(ajax.status) {
         case 200:
         console.log("Connection successful");
-        var id = new Int8Array(ajax.response);
-        console.log(new String(id[0]) + new String(id[1]) + new String(id[2]));
-        break;
-
-        case 409:
-        console.log("Another scratch instance is already connected");
+        var tmp = new Int8Array(ajax.response);
+        id = new String(tmp[0]) + new String(tmp[1]) + new String(tmp[2]);
+        console.log(id);
+        status = {status: 1, msg: "Ready"};
         break;
 
         default:
@@ -159,6 +166,50 @@ function connectToHA() {
     }
   };
   ajax.send();
+}
+
+function pingHA() {
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', url + id, true);
+  ajax.onreadystatechange = function() {
+    if(ajax.readyState === 4) {
+      switch(ajax.status) {
+        case 200:
+        console.log("Connection successful");
+        var id = new Int8Array(ajax.response);
+        console.log(new String(id[0]) + new String(id[1]) + new String(id[2]));
+        status = {status: 1, msg: "Ready"};
+        break;
+
+        default:
+        console.log("Connection failed")
+      }
+    }
+  };
+  ajax.send();
+}
+
+function disconnectFromHA() {
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', url + id, true);
+  ajax.onreadystatechange = function() {
+    if(ajax.readyState === 4) {
+      switch(ajax.status) {
+        case 200:
+        console.log("Connection successful");
+        var id = new Int8Array(ajax.response);
+        console.log(new String(id[0]) + new String(id[1]) + new String(id[2]));
+        status = {status: 1, msg: "Ready"};
+        break;
+
+        default:
+        console.log("Connection failed")
+      }
+    }
+  };
+  Uint8Array data = new Uint8Array(1);
+  data[0] = 0;
+  ajax.send(data);
 }
 
 })({});
