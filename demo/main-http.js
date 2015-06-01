@@ -201,7 +201,7 @@ function disconnectFromHA() {
       }
     }
   };
-  ajax.send(data);
+  ajax.send();
 }
 
 })({});
