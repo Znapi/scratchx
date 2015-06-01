@@ -189,7 +189,7 @@ function pingHA() {
 function disconnectFromHA() {
   var ajax = new XMLHttpRequest();
   ajax.open('DELETE', url + id, true);
-  ajax.setRequestHeader("Cache-Control", "no-cache");
+  //ajax.setRequestHeader("Cache-Control", "no-cache");
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
