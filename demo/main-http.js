@@ -147,7 +147,7 @@ var url = "http://localhost:25565"
 var id = null;
 function connectToHA() {
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', url, true);
+  ajax.open('POST', url, true);
   ajax.responseType = "arraybuffer";
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
@@ -188,7 +188,7 @@ function pingHA() {
 
 function disconnectFromHA() {
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', url + id, true);
+  ajax.open('DELETE', url + id, true);
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
       switch(ajax.status) {
@@ -201,8 +201,6 @@ function disconnectFromHA() {
       }
     }
   };
-  var data = new Uint8Array(1);
-  data[0] = 0;
   ajax.send(data);
 }
 
