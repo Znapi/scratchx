@@ -38,7 +38,7 @@ var descriptor = {
     [null, 'Create new Network Variable', 'create_variable'],
     [null, 'Delete Network Variable', 'delete_variable'],
     ['--'],
-    [' ', 'queue packet %m.list', 'queue_packet'],
+    [' ', 'queue packet %m.packets', 'queue_packet'],
     [' ', 'send queued packets', 'flush_outbound'],
     [' ', 'send packet %m.packets', 'send_packet'],
     ['-'],
