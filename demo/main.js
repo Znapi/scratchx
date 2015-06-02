@@ -4,15 +4,6 @@
 * Scratch Extension boilerplate code *
 \************************************/
 
-/*
-This is the boilerplate code required for an extension that is minimally
-pre-filled in. It  is filled in progammatically after the extension loads by
-code that runs on load.
-Only neccessary parts are filled in for end user experience. The status is
-explicitly set to 'unready' because the extension still has to initialize
-after it is loaded.
-*/
-
 ext.open_gui=function(){alert("Extension is still initializing\nGUI not loaded")};
 ext.create_variable=function(){};
 ext.delete_variable=function(){};
@@ -63,11 +54,6 @@ ScratchExtensions.register('Demo extension', descriptor, ext);
 /*********************\
 * Program begins here *
 \*********************/
-
-/*
-The purpose of the code executed in this file is to retrieve all neccessary
-resources, and, if successful, retrieve and run the initialization file.
-*/
 
 var status = {status: 1, msg: "Trying to connect to helper app"};
 ext._getStatus=function(){return status}
