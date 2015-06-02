@@ -1,7 +1,7 @@
 #Znapi's Scratch Extensions
 This repository hosts my Scratch extensions.  
 
-[**Repository Wiki**](https://github.com/Znapi/scratchx/wiki) - Learn how to use extensions and find extensions to use.  
+[**Repository Wiki**](https://github.com/Znapi/scratchx/wiki) - Learn how to use extensions and find extensions to use, and find documentation for my extensions.  
 
 **Learn more about Scratch extensions**
 >*From [scratch.mit.edu](https://scratch.mit.edu/):*  
@@ -13,6 +13,3 @@ http://llk.github.io/scratch-extension-docs/
 
 >Extensions Distribution site:  
 http://scratchx.org/
-
-##Repository Organization
-Each folder in the root of this repository(excluding wiki-res) is an individual extension, and no extension is dependent on another.
