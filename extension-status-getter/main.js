@@ -11,10 +11,11 @@ ext.get_ext_status_message = function(extName) {
 ext._shutdown=function(){};
 ext._getStatus=function(){return{status:2,msg:'Ready'}};
 
+var extName = 'Extension Status Getter';
 var descriptor = {
   blocks: [
-    ['r', 'status code of extension %s', 'get_ext_status', 'Extension Status Getter'],
-    ['r', 'staus message of extension %s', 'get_ext_status_message']
+    ['r', 'status code of extension %s', 'get_ext_status', extName],
+    ['r', 'staus message of extension %s', 'get_ext_status_message', extName]
   ],
   url: 'https://github.com/Znapi/scratchx/wiki/Extension-Status-Getter'
 };
