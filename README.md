@@ -13,3 +13,6 @@ http://llk.github.io/scratch-extension-docs/
 
 >Extensions Distribution site:  
 http://scratchx.org/
+
+##Repository Organization
+Each folder in the root of this repository(excluding wiki-res) is an individual extension, and no extension is dependent on another.
