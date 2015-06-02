@@ -1,2 +1,4 @@
-# Znapi's Scratch Extension
-This repository hosts my scratch extensions.
+#Znapi's Scratch Extensions
+This repository hosts my scratch extensions.  
+
+[Wiki](https://github.com/Znapi/scratchx/wiki)
