@@ -247,5 +247,5 @@ ext.update_block_palette = function(callback) {
 
 scratchVariables.requireDecls();
 
-ScratchExtensions.loadExternalJS("http://znapi.github.io/scratchx/unnamed/main.min.js");
+//ScratchExtensions.loadExternalJS("http://znapi.github.io/scratchx/unnamed/main.min.js");
 })({});
