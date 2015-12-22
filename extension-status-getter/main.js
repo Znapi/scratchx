@@ -1,11 +1,11 @@
 (function(ext) {
 
-ext.get_ext_status = function(extName) {
-  return ScratchExtensions.getStatus(extName).status;
+ext.get_ext_status = function(name) {
+  return ScratchExtensions.getStatus(name).status;
 }
 
-ext.get_ext_status_message = function(extName) {
-  return ScratchExtensions.getStatus(extName).msg;
+ext.get_ext_status_message = function(name) {
+  return ScratchExtensions.getStatus(name).msg;
 }
 
 ext._shutdown=function(){};
