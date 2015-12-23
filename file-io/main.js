@@ -1,11 +1,21 @@
 (function(ext) {
 
-ext.read=function(a,c){c("");};
-ext.write=function(a,b,c){c();};
-ext.make=function(a,c){c();};
+ext.read = function(dir, callback) {
+    makeRequestToHelperApp('GET', dir, callback);
+};
+
+ext.write = function(text, dir, callback) {
+    makeRequestToHelperApp('PUT', dir, callback, text);
+};
+
+ext.make = function(dir, callback) {
+    makeRequestToHelperApp('POST', dir, callback);
+};
 
 ext._shutdown=function(){};
-ext._getStatus=function(){return{status:1,msg:'Waiting for helper app'}};
+ext._getStatus=function(){status};
+
+var status = {status:1,msg:'Waiting for helper app'};
 
 ScratchExtensions.register('Simple File I/O',
   {
@@ -37,11 +47,12 @@ function makeRequestToHelperApp(method, uri, callback, body) {
         else
             r.send();
     }
-    request(method, uri, body, callback,
+    request(method, uri, body,
+        callback,
         function() {
-            ext._getStatus=function(){return{status:1,msg:'Waiting for helper app'}};
+            status = {status:1,msg:'Waiting for helper app'};
             intervalID = window.setInterval(request, 5000, method, uri, body,
-                function(rsp){window.clearInterval(intervalID); ext._getStatus=function(){return{status:2,msg:'Ready'}}; callback(rsp)},
+                function(rsp){window.clearInterval(intervalID); status = {status:2,msg:'Ready'}; callback(rsp)},
                 function(){}
             );
         }
@@ -49,19 +60,7 @@ function makeRequestToHelperApp(method, uri, callback, body) {
 }
 
 makeRequestToHelperApp('OPTIONS', '', function(){
-    ext._getStatus=function(){return{status:2,msg:'Ready'}};
-
-    ext.read = function(dir, callback) {
-        makeRequestToHelperApp('GET', dir, callback);
-    };
-
-    ext.write = function(text, dir, callback) {
-        makeRequestToHelperApp('PUT', dir, callback, text);
-    };
-
-    ext.make = function(dir, callback) {
-        makeRequestToHelperApp('POST', dir, callback);
-    };
+    status = {status:2,msg:'Ready'};
 });
 
 })({});
