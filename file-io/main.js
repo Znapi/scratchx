@@ -12,10 +12,15 @@ ext.make = function(dir, callback) {
     makeRequestToHelperApp('POST', dir, callback);
 };
 
-ext._shutdown=function(){};
-ext._getStatus=function(){status};
+var helperDetected = false;
 
-var status = {status:1,msg:'Waiting for helper app'};
+ext._shutdown=function(){};
+ext._getStatus=function(){
+    if(helperDetected)
+        return {status:2,msg:'Ready'};
+    else
+        return {status:1,msg:'Waiting for Helper App'};
+};
 
 ScratchExtensions.register('Simple File I/O',
   {
@@ -50,9 +55,9 @@ function makeRequestToHelperApp(method, uri, callback, body) {
     request(method, uri, body,
         callback,
         function() {
-            status = {status:1,msg:'Waiting for helper app'};
+            helperDetected=false;
             intervalID = window.setInterval(request, 5000, method, uri, body,
-                function(rsp){window.clearInterval(intervalID); status = {status:2,msg:'Ready'}; callback(rsp)},
+                function(rsp){window.clearInterval(intervalID); helperDetected=true; callback(rsp)},
                 function(){}
             );
         }
@@ -60,7 +65,7 @@ function makeRequestToHelperApp(method, uri, callback, body) {
 }
 
 makeRequestToHelperApp('OPTIONS', '', function(){
-    status = {status:2,msg:'Ready'};
+    helperDetected=true;
 });
 
 })({});
